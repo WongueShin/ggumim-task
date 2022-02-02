@@ -1,14 +1,33 @@
 import styled from "styled-components";
 
-export const Navi = styled.nav`
-    margin-top: 20px;
+export const NaviEmpty = styled.div`
+    width: 100%;
+    height: 20px;
+    box-sizing: border-box;
+`
+export const NaviFiexd = styled.div`
+    position: absolute;
     width: 100%;
     height: 80px;
     margin: 0 auto;
     z-index: 997;
-    background-color: #fff;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --swiper-navigation-size: 44px;
+`
+export const Navi = styled.nav`
     vertical-align: top;
+    position: relative;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 4%);
+    width: 100%;
     height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+
 `
 
 export const LogoContainer = styled.div`
@@ -19,8 +38,8 @@ export const LogoContainer = styled.div`
     vertical-align: top;
 `
 
-export const Logo = styled.div`
-    background-image: url(./image/logo.png);
+export const Logo = styled.div<{condition?: boolean}>`
+    background-image: ${(Props) => Props.condition ? 'url(https://cdn.ggumim.co.kr/storage/20190819180005BsuDIlFgfc.png)' : 'url(./image/logo.png)'};
     background-repeat: no-repeat;
     background-size: cover;
     width: 170px;
@@ -47,10 +66,10 @@ export const Title = styled.div`
     text-align: center;
 `
 
-export const Icon = styled.div`
+export const Icon = styled.div<{condition?: boolean}>`
     display: inline-block;
     margin-right: 5px;
-    background-image: url('./image/MenuIcon.png');
+    background-image: ${(props)=> props.condition ? "url(https://cdn.ggumim.co.kr/storage/20210916145044bbiIrAJoEf.png)": "url('./image/MenuIcon.png')" };
     background-repeat: no-repeat;
     background-size: contain;
     width: 19px;
@@ -122,10 +141,10 @@ export const SearchText = styled.div`
     color: #9e9e9e;
 `
 
-export const SearchIcon = styled.div`
+export const SearchIcon = styled.div<{condition?: boolean}>`
     display: inline-block;
     float: right;
-    background-image: url(//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png);
+    background-image: ${(props) => props.condition? 'url(//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png)' : 'url("./image/searchIcon.png")'};
     background-size: cover;
     background-repeat: no-repeat;
     width: 22px;

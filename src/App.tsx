@@ -1,21 +1,19 @@
-import React, {FC} from 'react';
-import styled from 'styled-components';
+import React, {FC, useState, useEffect} from 'react';
 import Nav from './components/Nav/index.Nav';
-
-const fetchData = (url:string) => {
-  fetch(url)
-  .then(response => response.json())
-  .then(data => console.log(data));
-} 
+import MainView from './components/MainView/index.MainView';
 
 const App: FC = () => {
-  fetchData("https://cdn.ggumim.co.kr/test/image_product_link.json");
+  const [data, setData] = useState([])
+    useEffect(() => {
+      fetch("https://cdn.ggumim.co.kr/test/image_product_link.json")
+      .then(res => res.json())
+      .then(setData)
+    },[])
+  console.log(data);
   return(
     <>
-    <Nav/>
-    <div>
-      App
-    </div>
+    <Nav data = {data}/>
+    <MainView data = {data}/>
     </>
   )
 }
