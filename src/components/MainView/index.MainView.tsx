@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import * as S from "./style.MainView";
 
 function MainViewTitle(){
@@ -24,11 +24,54 @@ function MainViewTitle(){
     )
 }
 
+function Tag (JsonData:any, selectedTag:number, setSelectedTag:any, condition:boolean){
+    const HandleClickImg = useCallback(()=>setSelectedTag(undefined) ,[])
+    return(
+        JsonData.productList.map((product:{pointX: number, pointY: number, imageUrl: string, productName: string, outside: boolean, priceDiscount: number, discountRate: number}, index: number) => {
+            return(
+                <S.Tag key={index} dataX = {product.pointX}  dataY = {product.pointY}>
+                    {
+                        index === selectedTag?<>
+                        <img className='closeIcon' onClick={HandleClickImg} src={condition? 'https://cdn.ggumim.co.kr/storage/20211029145330GwwumnWNSs.png' : './image/tagCloseIcon.png'}/>
+                        <S.Tooltip index= {index}>
+                            <S.TooltipImgdiv url={product.imageUrl} />
+                            <S.Desc>
+                                <S.FurnitureName>
+                                    {product.productName}
+                                </S.FurnitureName>
+                                <S.FurniturePrice>
+                                    {
+                                        product.outside?<>
+                                        <S.ExpectedPrice>예상가</S.ExpectedPrice>
+                                        <S.PriceDiscount>{product.priceDiscount}</S.PriceDiscount>
+                                        </>:<S.PriceDiscount>
+                                            <span>{product.discountRate}%</span>
+                                            {product.priceDiscount}
+                                        </S.PriceDiscount>
+                                    }
+                                </S.FurniturePrice>
+                            </S.Desc>
+                            <S.MoveIconWrapper>
+                                <img src='https://cdn.ggumim.co.kr/storage/20211102181936xqHzyWAmb8.png' alt='상품보기'/>
+                            </S.MoveIconWrapper>
+                        </S.Tooltip>
+                        </>:
+                        <img className='tagIcon' onClick={() => setSelectedTag(index)} src={condition? 'https://cdn.ggumim.co.kr/storage/20211029145238AlZrQ41xtg.png' : './image/tagIcon.png'}/>
+                        
+                    }
+                   </S.Tag>
+            )
+        }))    
+}
+
 
 function MainView (props:{data:any}){
     const JsonData = props.data;
     const [condition, setCondition] = useState(false);
     const [selectedTag, setSelectedTag]:any[] = useState(undefined);
+
+
+
     useEffect(()=>{
         if(props.data.productList){
             setCondition(true);
@@ -42,43 +85,7 @@ function MainView (props:{data:any}){
                 <S.ViewContentWarpper>
                     <S.ViewContent>
                         <img className='ViewImg' src={condition? '//cdn.ggumim.co.kr/cache/star/1000/2022011017094316oRcWeb8R.jpeg': './image/main.jpeg'} onClick={()=> setSelectedTag(undefined)} />
-                        {
-                            JsonData.productList.map((product:{pointX: number, pointY: number, imageUrl: string, productName: string, outside: boolean, priceDiscount: number, discountRate: number}, index: number) => {
-                                return(
-                                    <S.Tag key={index} dataX = {product.pointX}  dataY = {product.pointY}>
-                                        {
-                                            index === selectedTag?<>
-                                            <img className='closeIcon' onClick={()=> setSelectedTag(undefined)} src={condition? 'https://cdn.ggumim.co.kr/storage/20211029145330GwwumnWNSs.png' : './image/tagCloseIcon.png'}/>
-                                            <S.Tooltip index= {index}>
-                                                <S.TooltipImgdiv url={product.imageUrl} />
-                                                <S.Desc>
-                                                    <S.FurnitureName>
-                                                        {product.productName}
-                                                    </S.FurnitureName>
-                                                    <S.FurniturePrice>
-                                                        {
-                                                            product.outside?<>
-                                                            <S.ExpectedPrice>예상가</S.ExpectedPrice>
-                                                            <S.PriceDiscount>{product.priceDiscount}</S.PriceDiscount>
-                                                            </>:<S.PriceDiscount>
-                                                                <span>{product.discountRate}%</span>
-                                                                {product.priceDiscount}
-                                                            </S.PriceDiscount>
-                                                        }
-                                                    </S.FurniturePrice>
-                                                </S.Desc>
-                                                <S.MoveIconWrapper>
-                                                    <img src='https://cdn.ggumim.co.kr/storage/20211102181936xqHzyWAmb8.png' alt='상품보기'/>
-                                                </S.MoveIconWrapper>
-                                            </S.Tooltip>
-                                            </>:
-                                            <img className='tagIcon' onClick={() => setSelectedTag(index)} src={condition? 'https://cdn.ggumim.co.kr/storage/20211029145238AlZrQ41xtg.png' : './image/tagIcon.png'}/>
-                                            
-                                        }
-                                       </S.Tag>
-                                )
-                            })
-                        }
+                        {Tag(JsonData, selectedTag, setSelectedTag, condition)}
                         <S.ProductSwiper>
                             <S.SwiperWrapper>
                                 {

@@ -15,6 +15,7 @@ export const ViewHead = styled.div`
     box-sizing: border-box;
     margin: 0;
     font-size: 0;
+    margin: 0 auto;
     h2{
         font-size: 10px;
         font-weight: 100;
@@ -58,6 +59,7 @@ export const ViewStat = styled.div`
 `
 
 export const ViewContentWarpper = styled.div`
+    margin: 0 auto;
     box-sizing: border-box;
     padding: 40px 0;
     font-size: 0;
@@ -201,6 +203,9 @@ export const ProductSwiper = styled.div`
     background-color: #fff;
     padding: 0 10px;
     touch-action: pan-y;
+    margin: 0 auto;
+    position: relative;
+    right: 30px;
 `
 
 export const SwiperWrapper = styled.div`
