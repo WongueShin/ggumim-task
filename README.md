@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# 집꾸미기 기업과제 페이지
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## [GO DEMO🚀](https://https://zen-borg-b11750.netlify.app/)
 
-## Available Scripts
+url = "https://https://zen-borg-b11750.netlify.app/"
 
-In the project directory, you can run:
+## MEMBER
 
-### `npm start`
+* 신원규(개인과제)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 이슈 정리
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### TypeScript
+이번 진행하는 과제를 TypeScript기반으로 작성하기로 결정했습니다.
 
-### `npm test`
+큰 이유로 두가지가 있었습니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+첫번째로는 집꾸미기 회사의 채용공고 기술 스택중에 TS가 포함이 되어있었다는 이유입니다.
 
-### `npm run build`
+회사에서 이번 과제를 위해 따로 API 서버를 제공해 주셨을 정도로 신경을 써주셔서,<br/> 
+과제를 수행하는 입장으로서 과제를 주셨을때의 기대치를 가능한 달성해보려 했습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+두번째로는 향후 프리온보딩 과제가 TS기반으로 작성될 예정이기 떄문입니다.
+시간이 널널한 연휴간에 미리 이번 과제를 진행하며 시행착오를 겪어놔야 시간 제한이 촉박한 주간 과제를 진행할때 조장으로서의 역할수행을 할 수 있을거라는 판단입니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tag의 위치정보
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+일반적으로 x-axis, y-axis는 좌표계의 가로, 세로를 의미하는데 비해서<br/>
+이번의 경우에서 주어진 pointX는 배경 이미지의 원본 해상도에서 세로로 얼마나 내려오는지를,<br/>
+pointY는 배경 이미지의 원본 해상도에서 가로로 얼마나 떨어져있는지를 의미합니다.<br/>
+또한 원점은 이미지의 좌상단을 기준으로 가정합니다.<br/>
 
-### `npm run eject`
+추가로 원 이미지의 해상도가 1000px * 1248px이였지만 실제 렌더된 이미지의 크기는 800px * 998px로 원본대비 0.8배 축소되었으므로 주어진 위치정보또한 같은 배율로 보정시켜야 된다고 생각하였지만, 원본 사이트와 동일한 위치에 태그를 위치시키기 위해서는 주어진 위치 정보에 1.6배수로 곱하여 보정을 시켜주어야 정확히 동작합니다.
+실 동작하는 코드로서는
+```
+export const Tag = styled.div<{dataX: number, dataY: number}>`
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    cursor: pointer;
+    top: ${props=> props.dataX * 1.6 }px;
+    left: ${props=> props.dataY * 1.6}px;
+`
+```
+이런식이 되어야 합니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 기능 구현 요구사항
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* ✔️ 가구 정보가 있는 곳에 돋보기 모양의 버튼을 표시
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* ✔️ 돋보기를 클릭하면 상품정보 tool tip 출력되면서 돋보기모양이 닫기 버튼으로 변경
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* ✔️ 닫기 버튼을 클릭하면 tool tip을 없애고 돋보기 버튼으로 변경
 
-## Learn More
+* ✔️ tool tip은 하나만 노출. tool tip이 노출되고 있는 상태에서 다른 가구를 선택하면 노출되고 있 던 tool tip은 닫히고 새로 클릭한 가구 tool tip만 노출
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* ✔️ 하단에 있는 상품목록에서 해당 가구가 선택되었으면 tool tip 출력
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* ✔️ 선택된 가구는 선택되었으면 표시
+* ✔️ 할인율이 존재하는 경우에는 상단에 할인율(discountRate) 표시
+* ✔️ 가구의 입점여부따라 툴팁의 구조 변경.
