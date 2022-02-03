@@ -2,7 +2,6 @@ import React, {ReactElement, useEffect, useState} from 'react';
 import * as S from "./style.Nav";
 
 function Nav( props:{data:any} ):ReactElement  {
-    console.log(props.data);
     const [condition, setCondition] = useState(false);
     useEffect(()=>{
         if(props.data.productList){
