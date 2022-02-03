@@ -91,7 +91,7 @@ function MainView (props:{data:any}){
                                 {
                                    JsonData.productList.map((product:{pointX: number, pointY: number, imageUrl: string, productName: string, outside: boolean, priceDiscount: number, discountRate: number}, index: number) => { 
                                         return(
-                                        <S.ItemPicture className={`${index === selectedTag}`} onClick={()=> {if(selectedTag === undefined || selectedTag !== index){return setSelectedTag(index)} setSelectedTag(undefined)}}>
+                                        <S.ItemPicture key={index} className={`${index === selectedTag}`} onClick={()=> {if(selectedTag === undefined || selectedTag !== index){return setSelectedTag(index)} setSelectedTag(undefined)}}>
                                             <S.ItemPictureSubImg imageUrl={product.imageUrl}>
                                                 <S.DisCountBadge outside={product.outside}>
                                                     {product.discountRate}%
