@@ -4,9 +4,12 @@ export const NaviEmpty = styled.div`
     width: 100%;
     height: 20px;
     box-sizing: border-box;
+    background-color: #fff;
+    display: block;
+    
 `
 export const NaviFiexd = styled.div`
-    position: absolute;
+    object-fit: contain;
     width: 100%;
     height: 80px;
     margin: 0 auto;
@@ -15,19 +18,27 @@ export const NaviFiexd = styled.div`
     top: 0;
     left: 0;
     right: 0;
-    padding: 0;
-    box-sizing: border-box;
+    //min-width: 1280px;
     --swiper-navigation-size: 44px;
 `
+
+export const NavHead = styled.div`
+    background-color: #fff;
+    height: 80px;
+`
+
 export const Navi = styled.nav`
     vertical-align: top;
+    height: 80px;
     position: relative;
     box-shadow: 0 2px 12px rgb(0 0 0 / 4%);
-    width: 100%;
+`
+export const NavNew = styled.div`
+    //width: 1430px;
+    object-fit: scale-down;
     height: 80px;
     margin-left: auto;
     margin-right: auto;
-
 `
 
 export const LogoContainer = styled.div`
@@ -49,7 +60,7 @@ export const Logo = styled.div<{condition?: boolean}>`
 export const Menu = styled.div`
     vertical-align: top;
     display: inline-block;
-    width: calc(100% - 215px);
+    width: auto;
     position: relative;
 `
 
@@ -92,12 +103,22 @@ export const MenuItem = styled.div`
 `
 
 export const TitleText = styled(MenuItem)`
+    display: inline-block;
+    color: #333c45;
+    font-size: 18px;
+    height: 80px;
+    line-height: 80px;
+    text-align: left;
+    word-break: keep-all;
+    font-weight: bold;
+    font-family: "Spoqa Han Sans Neo";
 `
 
 export const A = styled.a`
     cursor: pointer;
     color: #000;
     text-decoration: none;
+    background-color: transparent;
 `
 
 export const Store = styled(MenuItem)`
@@ -115,12 +136,19 @@ export const Right = styled.div`
     float: right;
     position: relative;
 `
+export const SearchInputWrapper = styled.a`
+    cursor: pointer;
+    color: #000;
+    text-decoration: none;
+    background-color: transparent;
+    box-sizing: border-box;
+`
 
 export const SearchBar = styled(MenuItem)`
     padding: 0 12px 0 8px;
+    float: right;
 `
-export const SearchInputWrapper = styled.div`
-`
+
 
 export const SearchInput = styled.div`
     width: 300px;
@@ -142,8 +170,7 @@ export const SearchText = styled.div`
 `
 
 export const SearchIcon = styled.div<{condition?: boolean}>`
-    display: inline-block;
-    float: right;
+    //float: right;
     background-image: ${(props) => props.condition? 'url(//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png)' : 'url("./image/searchIcon.png")'};
     background-size: cover;
     background-repeat: no-repeat;
