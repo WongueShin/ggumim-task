@@ -5,7 +5,6 @@ export const NaviEmpty = styled.div`
     height: 20px;
     box-sizing: border-box;
     background-color: #fff;
-    display: block;
     
 `
 export const NaviFiexd = styled.div`
@@ -20,6 +19,7 @@ export const NaviFiexd = styled.div`
     right: 0;
     //min-width: 1280px;
     --swiper-navigation-size: 44px;
+    
 `
 
 export const NavHead = styled.div`
@@ -39,6 +39,10 @@ export const NavNew = styled.div`
     height: 80px;
     margin-left: auto;
     margin-right: auto;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 `
 
 export const LogoContainer = styled.div`
@@ -59,9 +63,11 @@ export const Logo = styled.div<{condition?: boolean}>`
 
 export const Menu = styled.div`
     vertical-align: top;
-    display: inline-block;
     width: auto;
     position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 `
 
 export const Category = styled.div`
@@ -91,7 +97,6 @@ export const Icon = styled.div<{condition?: boolean}>`
 
 export const MenuItem = styled.div`
     vertical-align: top;
-    display: inline-block;
     color: #333c45;
     font-size: 18px;
     height: 80px;
@@ -119,6 +124,8 @@ export const A = styled.a`
     color: #000;
     text-decoration: none;
     background-color: transparent;
+    flex-shrink: 1;
+    height: 100%;
 `
 
 export const Store = styled(MenuItem)`
@@ -133,8 +140,8 @@ export const Community = styled(MenuItem)`
 `
 
 export const Right = styled.div`
-    float: right;
-    position: relative;
+    //float: right;
+    //position: relative;
 `
 export const SearchInputWrapper = styled.a`
     cursor: pointer;
@@ -170,7 +177,7 @@ export const SearchText = styled.div`
 `
 
 export const SearchIcon = styled.div<{condition?: boolean}>`
-    //float: right;
+    float: right;
     background-image: ${(props) => props.condition? 'url(//cdn.ggumim.co.kr/storage/20190819234645GI8IRuYjml.png)' : 'url("./image/searchIcon.png")'};
     background-size: cover;
     background-repeat: no-repeat;
