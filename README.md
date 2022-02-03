@@ -1,8 +1,8 @@
 # 집꾸미기 기업과제 페이지
 
-## [GO DEMO🚀](https://https://zen-borg-b11750.netlify.app/)
+## [GO DEMO🚀](https://zen-borg-b11750.netlify.app/)
 
-url = "https://https://zen-borg-b11750.netlify.app/"
+url = "https://zen-borg-b11750.netlify.app/"
 
 ## MEMBER
 
@@ -30,7 +30,7 @@ url = "https://https://zen-borg-b11750.netlify.app/"
 pointY는 배경 이미지의 원본 해상도에서 가로로 얼마나 떨어져있는지를 의미합니다.<br/>
 또한 원점은 이미지의 좌상단을 기준으로 가정합니다.<br/>
 
-추가로 원 이미지의 해상도가 1000px * 1248px이였지만 실제 렌더된 이미지의 크기는 800px * 998px로 원본대비 0.8배 축소되었으므로 주어진 위치정보또한 같은 배율로 보정시켜야 된다고 생각하였지만, 원본 사이트와 동일한 위치에 태그를 위치시키기 위해서는 주어진 위치 정보에 1.6배수로 곱하여 보정을 시켜주어야 정확히 동작합니다.
+추가로 원 이미지의 해상도가 1000px * 1248px이였지만 실제 렌더된 이미지의 크기는 800px * 998px로 원본대비 0.8배 축소되었으므로 주어진 위치정보또한 같은 배율로 보정시켜야 된다고 생각하였지만, <br/>원본 사이트와 동일한 위치에 태그를 위치시키기 위해서는 주어진 위치 정보에 1.6배수로 곱하여 보정을 시켜주어야 정확히 동작합니다.
 실 동작하는 코드로서는
 ```
 export const Tag = styled.div<{dataX: number, dataY: number}>`
